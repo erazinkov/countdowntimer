@@ -20,8 +20,6 @@ CountdownTimer::CountdownTimer(QWidget *parent)
             m_time = time;
         }
     });
-    // m_timer->start();
-    // this->setMaximumWidth(200);
     this->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
 }
 
