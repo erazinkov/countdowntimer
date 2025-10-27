@@ -13,7 +13,7 @@ class CountdownTimer : public QWidget
 public:
     CountdownTimer(QWidget *parent = nullptr);
 signals:
-    void countdownTimeOn(bool);
+    void isCountdownOn(bool);
 public slots:
     void startStopCountdownTimer();
 private slots:

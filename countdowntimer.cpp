@@ -34,7 +34,7 @@ void CountdownTimer::startStopCountdownTimer()
     {
         m_timer->start();
     }
-    emit(countdownTimeOn(m_timer->isActive()));
+    emit(isCountdownOn(m_timer->isActive()));
 }
 
 void CountdownTimer::updateCountdown()
@@ -47,5 +47,5 @@ void CountdownTimer::updateCountdown()
         m_timer->stop();
         m_timeEdit->setTime(m_time);
     }
-    emit(countdownTimeOn(m_timer->isActive()));
+    emit(isCountdownOn(m_timer->isActive()));
 }

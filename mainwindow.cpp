@@ -18,8 +18,8 @@ MainWindow::MainWindow(QWidget *parent)
     layout->addWidget(m_button, 0, 2);
 
     connect(m_button, &QPushButton::clicked, m_cdt, &CountdownTimer::startStopCountdownTimer);
-    connect(m_cdt, &CountdownTimer::countdownTimeOn, this, [&](bool cdtOn){
-        m_button->setText(cdtOn ? "Stop" : "Start");
+    connect(m_cdt, &CountdownTimer::isCountdownOn, this, [&](bool isCountdownOn){
+        m_button->setText(isCountdownOn ? "Stop" : "Start");
     });
 
     this->setCentralWidget(widget);
