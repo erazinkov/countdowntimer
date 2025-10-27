@@ -13,7 +13,7 @@ CountdownTimer::CountdownTimer(QWidget *parent)
     m_timeEdit->setTime(m_time);
     m_checkBox = new QCheckBox("Timer", this);
     m_layout->addWidget(m_checkBox, 0, 0, Qt::AlignCenter);
-    m_layout->addWidget(m_timeEdit, 1, 0);
+    m_layout->addWidget(m_timeEdit, 1, 0, Qt::AlignCenter);
 
     connect(m_timer, &QTimer::timeout, this, &CountdownTimer::updateCountdown);
     connect(m_timeEdit, &QTimeEdit::userTimeChanged, [&](QTime time){
@@ -22,7 +22,6 @@ CountdownTimer::CountdownTimer(QWidget *parent)
             m_time = time;
         }
     });
-    this->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
 }
 
 void CountdownTimer::startStopCountdownTimer()
@@ -31,14 +30,14 @@ void CountdownTimer::startStopCountdownTimer()
     {
         m_timer->stop();
         m_timeEdit->setTime(m_time);
-        this->setEnabled(true);
+        m_timeEdit->setReadOnly(false);
     }
     else
     {
         if (m_checkBox->isChecked())
         {
             m_timer->start();
-            this->setEnabled(false);
+            m_timeEdit->setReadOnly(true);
         }
     }
 }
@@ -54,7 +53,7 @@ void CountdownTimer::updateCountdown()
     {
         m_timer->stop();
         m_timeEdit->setTime(m_time);
-        this->setEnabled(true);
+        m_timeEdit->setReadOnly(false);
         emit(finishedCountdown());
     }
 }
