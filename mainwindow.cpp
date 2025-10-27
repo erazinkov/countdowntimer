@@ -9,6 +9,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     m_cdt = new CountdownTimer(this);
     m_button = new QPushButton("Start", this);
+    m_button->setCheckable(true);
+
 
     QWidget *widget = new QWidget(this);
     QGridLayout *layout = new QGridLayout;
@@ -18,9 +20,13 @@ MainWindow::MainWindow(QWidget *parent)
     layout->addWidget(m_button, 0, 2);
 
     connect(m_button, &QPushButton::clicked, m_cdt, &CountdownTimer::startStopCountdownTimer);
-    connect(m_cdt, &CountdownTimer::isCountdownOn, this, [&](bool isCountdownOn){
-        m_button->setText(isCountdownOn ? "Stop" : "Start");
+    connect(m_button, &QPushButton::toggled, this, [&](bool checked){
+        m_button->setText(checked ? "Stop" : "Start");
     });
+    connect(m_cdt, &CountdownTimer::finishedCountdown, this, [&](){
+        qDebug() << "Finished";
+    });
+
 
     this->setCentralWidget(widget);
 

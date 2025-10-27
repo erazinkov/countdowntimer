@@ -6,6 +6,7 @@
 #include <QGridLayout>
 #include <QTimer>
 #include <QTimeEdit>
+#include <QCheckBox>
 
 class CountdownTimer : public QWidget
 {
@@ -13,16 +14,18 @@ class CountdownTimer : public QWidget
 public:
     CountdownTimer(QWidget *parent = nullptr);
 signals:
-    void isCountdownOn(bool);
+    void stoppedCountdown();
+    void finishedCountdown();
 public slots:
     void startStopCountdownTimer();
 private slots:
     void updateCountdown();
 private:
-    QHBoxLayout *m_layout;
+    QGridLayout *m_layout;
     QTimer *m_timer;
     QTimeEdit *m_timeEdit;
     QTime m_time;
+    QCheckBox *m_checkBox;
 };
 
 #endif // COUNTDOWNTIMER_H
